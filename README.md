@@ -1,8 +1,7 @@
 # The Train Project
 - React Native and Expo
-- .NET REST API
-- .NET MVC
-- MS SQL
+- Node.js Express REST API
+- MySql
 
 
 ![Screenshot](gitimages/reactnative.png)
