@@ -1,11 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Test from './views/test'
 
-export default function App() {
+export default function test() {
   return (
     <View style={styles.container}>
-      <Test></Test>
+      <Text>Test!</Text>
     </View>
   );
 }
