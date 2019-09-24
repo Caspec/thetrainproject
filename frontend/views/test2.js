@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 
-
-class test extends Component {
+class test2 extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Test screen 1!</Text>
-        <Button title='press me!' onPress={()=> this.props.navigation.navigate('test2')}></Button>
+        <Text>Test screen 2!!!!!!!!!!!!!</Text>
       </View>
     );
   }
@@ -23,4 +21,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default test;
+export default test2;
