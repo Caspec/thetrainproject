@@ -6,6 +6,7 @@ import test2 from './views/test2';
 const AppNavigator = createStackNavigator({
   test: { screen: test },
   test2: { screen: test2 },
+  
 });
 
 const App = createAppContainer(AppNavigator);
