@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
 
 
 class Navbar extends Component {
+
+    onPressButton = () => {
+      'Skal modtage et argument som fortæller hvilken knap der er trykket og hvor den skal linke hen?'
+      }
+
     render() {
         return (
             <View style={styles.container}>
 
-                
-                    <View style={styles.navContainer}>
-                        <Button color='#ccc' title='Check In/Out' onPress={() => this.props.navigation.navigate('test2')} />
-                        <Button color='#ccc' title='rejsekort' onPress={() => this.props.navigation.navigate('test2')} />
-                        <Button color='#ccc' title='Lone' onPress={() => this.props.navigation.navigate('test2')} />
-                        <Button color='#ccc' title='JB Juice' onPress={() => this.props.navigation.navigate('test2')} />
-                    </View>
-                
-
-
-                
+                <TouchableOpacity onPress={this._onPressButton}  style={styles.button}>
+                    <Text style={styles.buttonText}>Check Ind&Ud</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this._onPressButton} style={styles.button}>
+                    <Text style={styles.buttonText}>Mit Rejsekort</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this._onPressButton} style={styles.button}>
+                    <Text style={styles.buttonText}>Kort</Text>
+                </TouchableOpacity>
+            
             </View>
         );
     }
@@ -25,21 +29,25 @@ class Navbar extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        
         flexDirection: 'row',
-
-        backgroundColor: '#fff',
-        alignItems: 'flex-end',
-        justifyContent: 'space-around',
-    },
-    navContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-        height: 70,
-        minHeight: 50,
+        height: 90,
         width: '100%',
-        backgroundColor: '#ccc'
+        backgroundColor: 'dodgerblue',
+        justifyContent: 'center',
+        borderRadius: 7
+    },
+    button: {
+        height: 90,
+        width: 150, 
+        justifyContent: 'center',
+        alignItems: 'center',    
+    },
+    buttonText: {
+        fontSize: 25,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        color: 'white'
     }
 });
 
