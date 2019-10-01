@@ -9,10 +9,11 @@ class Navbar extends Component {
       }
 
     render() {
+        //const{ navigate } = this.props.navigation
         return (
             <View style={styles.container}>
 
-                <TouchableOpacity onPress={this._onPressButton}  style={styles.button}>
+                <TouchableOpacity onPress={() => navigate('test2', {screen: 'test2'})}  style={styles.button}>
                     <Text style={styles.buttonText}>Check Ind&Ud</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this._onPressButton} style={styles.button}>
