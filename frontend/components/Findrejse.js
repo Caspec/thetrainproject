@@ -1,14 +1,13 @@
-// Homescreen.js
+// Findrejse.js
 import React, { Component } from 'react';
 import { Button, View, Text } from 'react-native';
 
 
-export default class Homescreen extends Component {
+export default class Findrejse extends Component {
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
-          <Button title="Go to About" onPress={() => this.props.navigation.navigate('About')} />
+        <Text>Find Rejse</Text>
       </View>
     )
   }

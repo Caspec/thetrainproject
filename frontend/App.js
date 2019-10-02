@@ -4,7 +4,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator} from "react-navigation-tabs";
 
+// route components
 import HomeScreen from './components/Homescreen';
+import Check from './components/Check';
+import MitRejsekort from './components/Mitrejsekort';
+import FindRejse from './components/Findrejse';
+
+// route testing
 import AboutScreen from './components/Aboutscreen';
 import ContactScreen from './components/Contactscreen';
 
@@ -15,9 +21,10 @@ export default class App extends React.Component {
 }
 
 const AppNavigator = createBottomTabNavigator({
-  'Check Ind/Ud': { screen: HomeScreen },
-  'Mit Rejsekort': { screen: AboutScreen },
-  'Something': { screen: ContactScreen },
+  'Home': { screen: HomeScreen },
+  'Check ind / Check ud': { screen: Check},
+  'Mit Rejsekort': { screen: MitRejsekort },
+  'Find Rejse': { screen: FindRejse },
 },{
   tabBarOptions: {
     activeTintColor: '#fff',
