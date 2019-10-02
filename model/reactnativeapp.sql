@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `app`.`user` (
   `user_firstname` VARCHAR(50) CHARACTER SET 'utf8' NOT NULL,
   `user_lastname` VARCHAR(50) CHARACTER SET 'utf8' NOT NULL,
   `user_email` VARCHAR(50) CHARACTER SET 'utf8' NOT NULL,
+  `user_image` VARCHAR(50) CHARACTER SET 'utf8' NOT NULL,
   `user_balance` DOUBLE NOT NULL,
   PRIMARY KEY (`user_id`))
 ENGINE = InnoDB
@@ -77,9 +78,9 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- User
-INSERT INTO `app`.`user` (`user_firstname`, `user_lastname`, `user_email`, `user_balance`) VALUES ('Posemand', 'Eriksen', 'posemand@gmail.com', '100.00');
-INSERT INTO `app`.`user` (`user_firstname`, `user_lastname`, `user_email`, `user_balance`) VALUES ('Lone', 'Vikke', 'lvikke@gmail.com', '69.00');
-INSERT INTO `app`.`user` (`user_firstname`, `user_lastname`, `user_email`, `user_balance`) VALUES ('Lars', 'Graevlingsen', 'beskidt@gmail.com', '50.00');
+INSERT INTO `app`.`user` (`user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_balance`) VALUES ('Posemand', 'Eriksen', 'posemand@gmail.com', 'no.png', '100.00');
+INSERT INTO `app`.`user` (`user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_balance`) VALUES ('Lone', 'Vikke', 'lvikke@gmail.com', 'no.png', '69.00');
+INSERT INTO `app`.`user` (`user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_balance`) VALUES ('Lars', 'Graevlingsen', 'beskidt@gmail.com', 'no.png', '50.00');
 
 -- Journey
 INSERT INTO `app`.`journey` (`journey_checkin`, `journey_checkout`, `journey_longtitudestart`, `journey_latitudestart`, `journey_longtitudeend`, `journey_latitudeend`) VALUES ('2019-07-01 00:00:10', '2019-07-01 00:30:00', '20.00', '30.00', '40.00', '60.00');
