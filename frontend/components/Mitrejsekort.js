@@ -2,8 +2,14 @@
 import React, { Component } from 'react';
 import { Button, View, Text, ImageBackground, StyleSheet } from 'react-native';
 
-const url = "http://localhost:3001/user/1";
-const url2 ="192.168.1.247:3001/user/1";
+// CPH Business IP
+const url ="http://10.50.136.229:3001/user/1";
+
+// Stephan IP
+const url2 ="http://10.50.136.229:3001/user/1";
+
+// Casper IP
+const url3 ="http://10.50.136.229:3001/user/1";
 
 export default class Mitrejsekort extends Component {
 
@@ -15,13 +21,14 @@ export default class Mitrejsekort extends Component {
         fetch(url)
         .then(response => response.json())
         .then((data)=> {
+          console.log(data);
           this.setState({ rejse: data })
         })
         .catch(error=>console.log(error)) //to catch the errors if any
         }
 
   render() {
-      const rejseData = this.state.rejse.map((el) => <Text>{el.user_id}</Text>);
+      const rejseData = this.state.rejse.map((el, key) => <Text key={key}>{el.user_id}</Text>);
     return (
       <View>
       <View style={styles.heading}>
@@ -31,7 +38,7 @@ export default class Mitrejsekort extends Component {
             <ImageBackground source={require('../assets/rejsekort.png')} style={styles.imgBackground} resizeMode="contain">
                 <View style={styles.container}>
                     
-                    {rejseData}
+                  {rejseData}
                 </View>
             </ImageBackground>
         </View>
