@@ -4,6 +4,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator} from "react-navigation-tabs";
 
+// Icon
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 // route components
 import HomeScreen from './components/Homescreen';
 import Check from './components/Check';
@@ -21,26 +24,39 @@ export default class App extends React.Component {
 }
 
 const AppNavigator = createBottomTabNavigator({
-  'Home': { screen: HomeScreen },
-  'Check ind / Check ud': { screen: Check},
-  'Mit Rejsekort': { screen: MitRejsekort },
-  'Find Rejse': { screen: FindRejse },
+  Home : { screen: HomeScreen,
+  navigationOptions: {
+    tabBarIcon: ({ tintColor }) =>(<Icon size={ 28 } name={ 'check-circle-o' } color={ tintColor }/>)
+  }},
+  CheckIndUd: { screen: Check,
+  navigationOptions: {
+    tabBarIcon: ({ tintColor }) =>(<Icon size={ 28 } name={ 'id-card-o' } color={ tintColor }/>)
+    }},
+  MitRejsekort: { screen: MitRejsekort,
+    navigationOptions: {
+      tabBarIcon: ({ tintColor }) =>(<Icon size={ 28 } name={ 'search' } color={ tintColor }/>)
+    }},
+  FindRejse: { screen: FindRejse,
+    navigationOptions: {
+      tabBarIcon: ({ tintColor }) =>(<Icon size={ 28 } name={ 'credit-card' } color={ tintColor }/>)
+    } },
 },{
   tabBarOptions: {
     activeTintColor: '#fff',
     inactiveTintColor: 'black',
     showIcon: true,
+    showLabel: false,
       style: {
         backgroundColor: 'dodgerblue',
         height: 80,
       
     },
     labelStyle:{
-      fontSize: 22,
+      fontSize: 16,
       fontFamily: 'Roboto',
       justifyContent: 'center',
       alignItems: 'center', 
-      padding: 20,
+      padding: 1,
       fontWeight: 'bold',
       
 
