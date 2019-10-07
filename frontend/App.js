@@ -26,19 +26,19 @@ export default class App extends React.Component {
 const AppNavigator = createBottomTabNavigator({
   Home : { screen: HomeScreen,
   navigationOptions: {
-    tabBarIcon: ({ tintColor }) =>(<Icon size={ 28 } name={ 'check-circle-o' } color={ tintColor }/>)
+    tabBarIcon: ({ tintColor }) =>(<Icon size={ 28 } name={ 'home' } color={ tintColor }/>)
   }},
   CheckIndUd: { screen: Check,
   navigationOptions: {
-    tabBarIcon: ({ tintColor }) =>(<Icon size={ 28 } name={ 'id-card-o' } color={ tintColor }/>)
+    tabBarIcon: ({ tintColor }) =>(<Icon size={ 28 } name={ 'check-circle-o' } color={ tintColor }/>)
     }},
   MitRejsekort: { screen: MitRejsekort,
     navigationOptions: {
-      tabBarIcon: ({ tintColor }) =>(<Icon size={ 28 } name={ 'search' } color={ tintColor }/>)
+      tabBarIcon: ({ tintColor }) =>(<Icon size={ 28 } name={ 'id-card-o' } color={ tintColor }/>)
     }},
   FindRejse: { screen: FindRejse,
     navigationOptions: {
-      tabBarIcon: ({ tintColor }) =>(<Icon size={ 28 } name={ 'credit-card' } color={ tintColor }/>)
+      tabBarIcon: ({ tintColor }) =>(<Icon size={ 28 } name={ 'train' } color={ tintColor }/>)
     } },
 },{
   tabBarOptions: {
