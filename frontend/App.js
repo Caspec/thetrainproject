@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import HomeScreen from './components/Homescreen';
 import Check from './components/Check';
 import MitRejsekort from './components/Mitrejsekort';
-import FindRejse from './components/Findrejse';
+import RejseHistorik from './components/Rejsehistorik';
 
 // route testing
 import AboutScreen from './components/Aboutscreen';
@@ -36,9 +36,9 @@ const AppNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarIcon: ({ tintColor }) =>(<Icon size={ 28 } name={ 'id-card-o' } color={ tintColor }/>)
     }},
-  FindRejse: { screen: FindRejse,
+  FindRejse: { screen: RejseHistorik,
     navigationOptions: {
-      tabBarIcon: ({ tintColor }) =>(<Icon size={ 28 } name={ 'train' } color={ tintColor }/>)
+      tabBarIcon: ({ tintColor }) =>(<Icon size={ 28 } name={ 'history' } color={ tintColor }/>)
     } },
 },{
   tabBarOptions: {
