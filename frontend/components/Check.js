@@ -25,7 +25,17 @@ export default class Check extends Component {
                                 } 
                    }
   }
-
+checkedIn(){
+  navigator.geolocation.getCurrentPosition(
+    position => {
+      const longtitude = JSON.stringify(position.coords.longitude);
+      const latitude = JSON.stringify(position.coords.latitude);
+      this.state.checkinfo.Journey_longtitudestart = longtitude;
+      this.state.checkinfo.Journey_latitudestart = latitude;
+    },
+    { enableHighAccuracy: true, timeout: 20000, maximumage: 1000}
+  )
+}
   
 
   render() {
