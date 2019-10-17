@@ -1,6 +1,6 @@
 // Check.js
 import React, { Component } from 'react';
-import { Button, View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 // CPH Business IP
 const url ="http://10.50.136.229:3001/journey/1";
@@ -13,51 +13,74 @@ const url3 ="http://192.168.1.247.:3001/journey/1";
 
 
 export default class Check extends Component {
+
   constructor(props){
     super(props);
-      this.state = { checkinfo: { Journey_id: 0,
-                                  Journey_checkin: 'None',
-                                  Journey_checkout: 'None',
-                                  Journey_longtitudestart: 1.1,
-                                  Journey_latitudestart: 2.2,
-                                  Journey_longtitudeend: 3.3,
-                                  Journey_latitudeend: 4.4
-                                } 
-                   }
+      this.state = { buttonText: 'Check Ind' };
   }
-checkedIn(){
+ 
+                
+checkedIn = () => {
   navigator.geolocation.getCurrentPosition(
     position => {
-      const longtitude = JSON.stringify(position.coords.longitude);
-      const latitude = JSON.stringify(position.coords.latitude);
-      this.state.checkinfo.Journey_longtitudestart = longtitude;
-      this.state.checkinfo.Journey_latitudestart = latitude;
+      let longtitude = position.coords.longitude;
+      let latitude = position.coords.latitude;
+      let date = new Date().getDate(); //Current Date
+      let month = new Date().getMonth() + 1; //Current Month
+      let year = new Date().getFullYear(); //Current Year
+      let hours = new Date().getHours(); //Current Hours
+      let min = new Date().getMinutes(); //Current Minutes
+      let sec = new Date().getSeconds(); //Current Seconds
+
+      if(this.state.buttonText == 'Check Ind'){
+        console.log('Checked in');
+
+        this.setState({
+        journey_longtitudestart: longtitude, 
+        journey_latitudestart: latitude,
+        journey_checkin: date + '/' + month + '/' + year + ' ' + hours + ':' + min + ':' + sec,
+        buttonText: 'Check Ud' })
+      }else{
+        console.log('Checked Out');
+        this.setState({
+          buttonText: 'Check Ind',
+          journey_longtitudeend: longtitude,
+        journey_latitudeend: latitude,
+      journey_checkout: date + '/' + month + '/' + year + ' ' + hours + ':' + min + ':' + sec })
+      }
+      
+        // Indsætte data i databasen
+        
+        // Clear state
     },
-    { enableHighAccuracy: true, timeout: 20000, maximumage: 1000}
+    { enableHighAccuracy: true, timeout: 100, maximumage: 1000}
   )
-}
+};
   
 
   render() {
     return (
       <View style={styles.wrapper}>
-        <View style={styles.check}>
-          <Text style={styles.text}>Check Ind</Text>
-        </View>
+        <TouchableOpacity onPress={this.checkedIn}>
+          <View style={styles.check}>
+            <Text style={styles.text}>{this.state.buttonText}</Text>
+          </View>
+        </TouchableOpacity>
+
         <View style={styles.info}>
-          <Text>Journey_id:              { this.state.checkinfo.Journey_id }</Text>
-          <Text>Journey_checkin:         { this.state.checkinfo.Journey_checkin } </Text>
-          <Text>Journey_checkout:        { this.state.checkinfo.Journey_checkout } </Text>
-          <Text>Journey_longtitudestart: { this.state.checkinfo.Journey_longtitudestart } </Text>
-          <Text>Journey_latitudestart:   { this.state.checkinfo.Journey_latitudestart } </Text>
-          <Text>Journey_longtitudeend:   { this.state.checkinfo.Journey_longtitudeend } </Text>
-          <Text>Journey_latitudeend:     { this.state.checkinfo.Journey_latitudeend } </Text>
+          <Text>Journey_id:              { this.state.journey_id }</Text>
+          <Text>Journey_checkin:         { this.state.journey_checkin } </Text>
+          <Text>Journey_checkout:        { this.state.journey_checkout } </Text>
+          <Text>Journey_longtitudestart: { this.state.journey_longtitudestart } </Text>
+          <Text>Journey_latitudestart:   { this.state.journey_latitudestart } </Text>
+          <Text>Journey_longtitudeend:   { this.state.journey_longtitudeend } </Text>
+          <Text>Journey_latitudeend:     { this.state.journey_latitudeend } </Text>
         </View>
-        
       </View>
     )
   }
-  
+
+
 }
 const styles = StyleSheet.create({
   wrapper: {
