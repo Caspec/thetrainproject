@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 // CPH Business IP
-const url ="http://10.50.136.229:3001/journey/1";
+const url ="http://10.50.136.229:3001/create_journey";
 
 // Stephan IP
-const url2 ="http://10.149.52.35:3001/journey/1";
+const url2 ="http://10.149.52.35:3001/create_journey";
 
 // Casper IP
-const url3 ="http://192.168.1.247.:3001/journey/1";
+const url3 ="http://192.168.1.247.:3001/create_journey";
 
 
 export default class Check extends Component {
@@ -21,42 +21,79 @@ export default class Check extends Component {
  
                 
 checkedIn = () => {
-  navigator.geolocation.getCurrentPosition(
-    position => {
-      let longtitude = position.coords.longitude;
-      let latitude = position.coords.latitude;
-      let date = new Date().getDate(); //Current Date
-      let month = new Date().getMonth() + 1; //Current Month
-      let year = new Date().getFullYear(); //Current Year
-      let hours = new Date().getHours(); //Current Hours
-      let min = new Date().getMinutes(); //Current Minutes
-      let sec = new Date().getSeconds(); //Current Seconds
 
-      if(this.state.buttonText == 'Check Ind'){
-        console.log('Checked in');
+  let date = new Date().getDate(); 
+  let month = new Date().getMonth() + 1;
+  let year = new Date().getFullYear();
+  let hours = new Date().getHours();
+  let min = new Date().getMinutes(); 
+  let sec = new Date().getSeconds(); 
 
+  if(this.state.buttonText == 'Check Ind'){
+    console.log('Checked in');
+
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        let longtitude = position.coords.longitude;
+        let latitude = position.coords.latitude;
         this.setState({
-        journey_longtitudestart: longtitude, 
-        journey_latitudestart: latitude,
-        journey_checkin: date + '/' + month + '/' + year + ' ' + hours + ':' + min + ':' + sec,
-        buttonText: 'Check Ud' })
-      }else{
-        console.log('Checked Out');
+          journey_longtitudestart: longtitude, 
+          journey_latitudestart: latitude,
+        })
+      },
+      { enableHighAccuracy: true, timeout: 100, maximumage: 1000}
+    )
+
+    this.setState({
+    journey_checkin: year + '-' + month + '-' + date + ' ' + hours + ':' + min + ':' + sec + '.000000',
+    buttonText: 'Check Ud' })
+  }else{
+    console.log('Checked Out');
+
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        let longtitude = position.coords.longitude;
+        let latitude = position.coords.latitude;
         this.setState({
-          buttonText: 'Check Ind',
-          journey_longtitudeend: longtitude,
-        journey_latitudeend: latitude,
-      journey_checkout: date + '/' + month + '/' + year + ' ' + hours + ':' + min + ':' + sec })
-      }
-      
-        // Indsætte data i databasen
-        
-        // Clear state
-    },
-    { enableHighAccuracy: true, timeout: 100, maximumage: 1000}
-  )
+          journey_longtitudeend: longtitude, 
+          journey_latitudeend: latitude,
+        })
+      },
+      { enableHighAccuracy: true, timeout: 100, maximumage: 1000}
+    )
+    this.setState({
+      buttonText: 'Check Ind',
+      journey_checkout: year + '-' + month + '-' + date + ' ' + hours + ':' + min + ':' + sec + '.000000' })
+
+
+
+  let journeydata = {
+    method: 'POST',
+    body: JSON.stringify({
+        journey_checkin: this.state.journey_checkin,
+        journey_checkout: this.state.journey_checkout,
+        journey_longtitudestart: this.state.journey_longtitudestart,
+        journey_latitudestart: this.state.journey_latitudestart,
+        journey_longtitudeend: this.state.journey_longtitudeend,
+        journey_latitudeend: this.state.journey_latitudeend,
+    }),
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    }
+}
+
+fetch(url2, journeydata)
+  .then((response) => response.json())
+        .then((responseJson) => {
+    }).catch((error) => {
+      console.error(error);
+  });
+
+
+  }
 };
-  
+
 
   render() {
     return (

@@ -49,11 +49,11 @@ router.post("/create_journey", (req, res) => {
     const queryString = "INSERT INTO `journey` (journey_checkin, journey_checkout, journey_longtitudestart, journey_latitudestart, journey_longtitudeend, journey_latitudeend) VALUES (?, ?, ?, ?, ?, ?);"
     getConnection().query(queryString, [journey_checkin, journey_checkout, journey_longtitudestart, journey_latitudestart, journey_longtitudeend, journey_latitudeend], (err, results) => {
         if (err) {
-            console.log("log --> Failed to query: /user_create " + err)
+            console.log("log --> Failed to query: /create_journey " + err)
             res.sendStatus(500)
             return
         }
-        console.log("log --> create new user: /user_create created successfully")
+        console.log("log --> create new user: /create_journey created successfully")
         res.end()
     })
 })
