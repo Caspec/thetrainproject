@@ -41,10 +41,10 @@ router.get("/journeys", (req, res) => {
 router.post("/create_journey", (req, res) => {
     const journey_checkin = req.body.journey_checkin.toString();
     const journey_checkout = req.body.journey_checkout.toString();
-    const journey_longtitudestart = res.body.journey_longtitudestart.toString();
-    const journey_latitudestart = res.body.journey_latitudestart.toString();
-    const journey_longtitudeend = res.body.journey_longtitudeend.toString();
-    const journey_latitudeend = res.body.journey_latitudeend.toString();
+    const journey_longtitudestart = req.body.journey_longtitudestart.toString();
+    const journey_latitudestart = req.body.journey_latitudestart.toString();
+    const journey_longtitudeend = req.body.journey_longtitudeend.toString();
+    const journey_latitudeend = req.body.journey_latitudeend.toString();
 
     const queryString = "INSERT INTO `journey` (journey_checkin, journey_checkout, journey_longtitudestart, journey_latitudestart, journey_longtitudeend, journey_latitudeend) VALUES (?, ?, ?, ?, ?, ?);"
     getConnection().query(queryString, [journey_checkin, journey_checkout, journey_longtitudestart, journey_latitudestart, journey_longtitudeend, journey_latitudeend], (err, results) => {
@@ -53,7 +53,7 @@ router.post("/create_journey", (req, res) => {
             res.sendStatus(500)
             return
         }
-        console.log("log --> create new user: /create_journey created successfully")
+        console.log("log --> create new journey: /create_journey created successfully")
         res.end()
     })
 })

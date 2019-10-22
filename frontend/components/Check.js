@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 // CPH Business IP
-const url ="http://10.50.136.229:3001/create_journey";
+const url ="http://10.50.137.142:3001/create_journey";
 
 // Stephan IP
 const url2 ="http://10.149.52.35:3001/create_journey";
@@ -66,8 +66,8 @@ checkedIn = () => {
       journey_checkout: year + '-' + month + '-' + date + ' ' + hours + ':' + min + ':' + sec + '.000000' })
 
 
-
-  let journeydata = {
+setTimeout( () => {
+let journeydata = {
     method: 'POST',
     body: JSON.stringify({
         journey_checkin: this.state.journey_checkin,
@@ -78,19 +78,30 @@ checkedIn = () => {
         journey_latitudeend: this.state.journey_latitudeend,
     }),
     headers: {
-        'Accept': 'application/json',
+        'Accept': 'application/json, text/plain',
         'Content-Type': 'application/json',
     }
 }
-
-fetch(url2, journeydata)
-  .then((response) => response.json())
+console.log(this.state.journey_longtitudestart);
+fetch(url, journeydata)
+  .then((response) => response.text())
         .then((responseJson) => {
     }).catch((error) => {
       console.error(error);
   });
 
+},1000)
 
+  setTimeout( () => {
+    this.setState({
+      journey_checkin: '',
+      journey_checkout: '',
+      journey_longtitudestart: '',
+      journey_latitudestart: '',
+      journey_longtitudeend: '',
+      journey_latitudeend: ''
+    })
+  },3000)
   }
 };
 
