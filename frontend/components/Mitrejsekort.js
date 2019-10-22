@@ -2,8 +2,9 @@
 import React, { Component } from 'react';
 import { Button, View, Text, ImageBackground, StyleSheet, Image, TextInput } from 'react-native';
 
+// !! Dynamisk IP Adresse !!
 // CPH Business IP
-const url ="http://10.50.136.229:3001/user/1";
+const url ="http://10.50.136.238:3001/user/1";
 
 // Stephan IP
 const url2 ="http://10.50.136.229:3001/user/1";
@@ -18,7 +19,7 @@ export default class Mitrejsekort extends Component {
         this.state = { rejse: [], balance: 0 };
       }
       componentDidMount(){
-        fetch(url3)
+        fetch(url)
         .then(response => response.json())
         .then((data)=> {
           console.log(data);

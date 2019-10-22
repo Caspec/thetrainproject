@@ -58,4 +58,19 @@ router.post("/create_journey", (req, res) => {
     })
 })
 
+// JourneyLines - Get last one
+router.get("/journeyline", (req, res) => {
+    console.log("log --> Get all journeyline: /journeyline")
+    const queryString = "SELECT * FROM journeyline ORDER BY fk_journey_journeyline_id DESC limit 1"
+    getConnection().query(queryString, (err, rows, fields) => {
+        if (err) {
+            console.log("log --> Failed to query: /journeyline " + err)
+            res.sendStatus(500)
+            return
+        }
+        console.log("log --> SELECT: /journeyline fetched successfully")
+        res.json(rows)
+    })
+})
+
 module.exports = router
