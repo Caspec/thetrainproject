@@ -115,14 +115,25 @@ fetch(url, journeydata)
           </View>
         </TouchableOpacity>
 
-        <View style={styles.info}>
-          <Text>Journey_id:              { this.state.journey_id }</Text>
-          <Text>Journey_checkin:         { this.state.journey_checkin } </Text>
-          <Text>Journey_checkout:        { this.state.journey_checkout } </Text>
-          <Text>Journey_longtitudestart: { this.state.journey_longtitudestart } </Text>
-          <Text>Journey_latitudestart:   { this.state.journey_latitudestart } </Text>
-          <Text>Journey_longtitudeend:   { this.state.journey_longtitudeend } </Text>
-          <Text>Journey_latitudeend:     { this.state.journey_latitudeend } </Text>
+        <View style={styles.infobox}>
+          <View style={styles.labelsbox}>
+            <Text>Journey_id: </Text>
+            <Text>Journey_checkin: </Text>
+            <Text>Journey_checkout: </Text>
+            <Text>Journey_longtitudestart: </Text>
+            <Text>Journey_latitudestart: </Text>
+            <Text>Journey_longtitudeend: </Text>
+            <Text>Journey_latitudeend: </Text>
+          </View>
+          <View>
+            <Text style={styles.databox}> { this.state.journey_id }</Text>
+            <Text style={styles.databox}> { this.state.journey_checkin } </Text>
+            <Text style={styles.databox}> { this.state.journey_checkout } </Text>
+            <Text style={styles.databox}> { this.state.journey_longtitudestart } </Text>
+            <Text style={styles.databox}> { this.state.journey_latitudestart } </Text>
+            <Text style={styles.databox}> { this.state.journey_longtitudeend } </Text>
+            <Text style={styles.databox}> { this.state.journey_latitudeend } </Text>
+          </View>       
         </View>
       </View>
     )
@@ -142,6 +153,8 @@ const styles = StyleSheet.create({
     height: 350,
     backgroundColor: 'dodgerblue',
     borderRadius: 200,
+    borderColor: '#186fc4',
+    borderWidth: 3,
     alignItems: 'center',
     justifyContent: 'center',
     margin: 20
@@ -151,9 +164,15 @@ const styles = StyleSheet.create({
       fontSize: 30,
       color: 'white'
     },
-    info: {
+    infobox: {
+      flex: 1,
+      flexDirection: 'row',
       width: '100%',
       alignItems: 'flex-start'
+    }, 
+    databox: {
+      color: 'green', 
+      fontWeight: 'bold'
     }
     
   });
