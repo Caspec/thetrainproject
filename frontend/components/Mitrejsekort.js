@@ -1,10 +1,13 @@
 // Mitrejsekort.js
 import React, { Component } from 'react';
-import { Button, View, Text, ImageBackground, StyleSheet, Image, TextInput } from 'react-native';
+import { Button, View, Text, ImageBackground, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
 
 // !! Dynamisk IP Adresse !!
 // CPH Business IP
 const url ="http://10.50.136.238:3001/user/1";
+
+// CPH Business PUT 
+const urlPUT = "http://10.50.136.238:3001/update_balance"
 
 // Stephan IP
 const url2 ="http://10.50.136.229:3001/user/1";
@@ -23,9 +26,35 @@ export default class Mitrejsekort extends Component {
         .then(response => response.json())
         .then((data)=> {
           console.log(data);
-          this.setState({ rejse: data, balance: data[0].user_balance })
+          this.setState({ rejse: data, totalbalance: '', balance: data[0].user_balance })
         })
         .catch(error=>console.log(error)) //to catch the errors if any
+        }
+
+        addbalance = () => {
+         let totalbalance = parseFloat(this.state.balance) + parseFloat(this.state.newbalance); 
+          let addToBalance = {
+            method: 'PUT',
+            body: JSON.stringify({
+                user_id: 1,
+                user_firstname: 'Posemand',
+                user_lastname: 'Eriksen',
+                user_email: 'posemand@gmail.com',
+                user_image: 'no.png',
+                user_balance: totalbalance,
+            }),
+            headers: {
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json',
+            }
+        }
+        fetch(urlPUT, addToBalance)
+          .then((response) => response.text())
+                .then((responseJson) => {
+                  this.setState({ balance: totalbalance, newbalance: '' })
+            }).catch((error) => {
+              console.error(error);
+          });
         }
 
   render() {
@@ -51,6 +80,17 @@ export default class Mitrejsekort extends Component {
         <View>
             <View style={styles.containerImage}>
                <Image source={require('../assets/noboy.png')}></Image>
+            </View>
+        </View>
+        <View>
+            <View style={styles.containerKredit}>
+            <Text>Optankning til dit Rejsekort</Text> 
+            <TextInput style={styles.textInputKredit} editable={true} keyboardType='numeric' onChangeText={(newbalance) => this.setState({ newbalance })} value={this.state.newbalance} />
+            <TouchableOpacity onPress={this.addbalance} style={styles.addbutton}>
+            <View>
+              <Text style={styles.addcenter}>Tilføj</Text>
+            </View>
+          </TouchableOpacity>
             </View>
         </View>
       </View>
@@ -103,5 +143,17 @@ const styles = StyleSheet.create({
     minInfo: {
       fontSize: 18,
       fontWeight: "bold"
+    },
+    addbutton: {
+      height: 30,
+      width: 120,
+      backgroundColor: '#057D8B',
+      marginTop: 15,
+      borderRadius: 5,
+      paddingTop: 5,
+    },
+    addcenter: {
+      textAlign: 'center',
+      color: '#fff'
     }
   });

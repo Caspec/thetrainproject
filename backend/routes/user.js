@@ -39,16 +39,40 @@ router.get("/users", (req, res) => {
 
 // Post new user
 router.post("/create_user", (req, res) => {
-    const username = req.body.user_name.toString();
-    const password = req.body.user_password.toString();
-    const queryString = "INSERT INTO `user` (user_name, user_password) VALUES (?, ?);"
-    getConnection().query(queryString, [username, password], (err, results) => {
+    const user_firstname = req.body.user_firstname.toString();
+    const user_lastname = req.body.user_lastname.toString();
+    const user_email = req.body.user_email.toString();
+    const user_image = req.body.user_image.toString();
+    const user_balance = req.body.user_balance.toString();
+    const queryString = "INSERT INTO `user` (user_firstname, user_lastname, user_email, user_image, user_balance) VALUES (?, ?, ?, ?, ?);"
+    getConnection().query(queryString, [user_firstname, user_lastname, user_email, user_image, user_balance], (err, results) => {
         if (err) {
             console.log("log --> Failed to query: /user_create " + err)
             res.sendStatus(500)
             return
         }
         console.log("log --> create new user: /user_create created successfully")
+        res.end()
+    })
+})
+
+// Update balance
+router.put("/update_balance", (req, res) => {
+    const user_id = req.body.user_id.toString();
+    console.log(user_id);
+    const user_firstname = req.body.user_firstname.toString();
+    const user_lastname = req.body.user_lastname.toString();
+    const user_email = req.body.user_email.toString();
+    const user_image = req.body.user_image.toString();
+    const user_balance = req.body.user_balance.toString();
+    const queryString = "UPDATE `user` SET user_firstname = ?, user_lastname = ?, user_email = ?, user_image = ?, user_balance = ? WHERE user_id = ? ;"
+    getConnection().query(queryString, [user_firstname, user_lastname, user_email, user_image, user_balance, user_id], (err, results) => {
+        if (err) {
+            console.log("log --> Failed to query: /update_balance " + err)
+            res.sendStatus(500)
+            return
+        }
+        console.log("log --> edit product: /update_balance edited successfully")
         res.end()
     })
 })
