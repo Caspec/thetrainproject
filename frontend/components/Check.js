@@ -1,6 +1,7 @@
 // Check.js
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import Header from './Header';
 
 // CPH Business IP
 const url ="http://10.50.137.142:3001/create_journey";
@@ -109,6 +110,7 @@ fetch(url, journeydata)
   render() {
     return (
       <View style={styles.wrapper}>
+  <Header />
         <TouchableOpacity onPress={this.checkedIn}>
           <View style={styles.check}>
             <Text style={styles.text}>{this.state.buttonText}</Text>
@@ -146,7 +148,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '10%'
+    padding: 40,
   },
   check: {
     width: 350,
@@ -158,21 +160,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: 20
-    },
-    text: {
-      fontWeight: 'bold',
-      fontSize: 30,
-      color: 'white'
-    },
-    infobox: {
-      flex: 1,
-      flexDirection: 'row',
-      width: '100%',
-      alignItems: 'flex-start'
-    }, 
-    databox: {
-      color: 'green', 
-      fontWeight: 'bold'
-    }
+  },
+  text: {
+    fontWeight: 'bold',
+    fontSize: 30,
+    color: 'white'
+  },
+  infobox: {
+    flex: 1,
+    flexDirection: 'row',
+    width: '100%',
+    alignItems: 'flex-start'
+  }, 
+  databox: {
+    color: 'green', 
+    fontWeight: 'bold'
+  }
     
   });

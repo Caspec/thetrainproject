@@ -1,10 +1,11 @@
 // Mitrejsekort.js
 import React, { Component } from 'react';
-import { Button, View, Text, ImageBackground, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
+import Header from './Header';
 
 // !! Dynamisk IP Adresse !!
 // CPH Business IP
-const url ="http://10.50.136.238:3001/user/1";
+const url ="http://10.50.137.142:3001/user/1";
 
 // CPH Business PUT 
 const urlPUT = "http://10.50.136.238:3001/update_balance"
@@ -62,10 +63,9 @@ export default class Mitrejsekort extends Component {
       const DK = " DKK";
       console.log(this.state.balance);
     return (
-      <View>
-      <View style={styles.heading}>
-            <Text>Mit Rejsekort</Text>
-      </View>
+      <View style={styles.wrapper}>
+      <Header />
+     
         <View>
             <ImageBackground source={require('../assets/rejsekort.png')} style={styles.imgBackground} resizeMode="stretch">
                 <View style={styles.containerInfo}>
@@ -99,6 +99,9 @@ export default class Mitrejsekort extends Component {
 }
 
 const styles = StyleSheet.create({
+    wrapper: {
+      padding: 40,
+    },
     heading: {
         flexDirection: "row",
         flex: 1,
