@@ -11,7 +11,7 @@ const url ="http://10.50.137.189:3001/user/1";
 const urlPUT = "http://10.50.136.238:3001/update_balance"
 
 // Stephan IP
-const url2 ="http://10.50.136.229:3001/user/1";
+const url2 ="http://10.149.52.61:3001/user/1";
 
 // Casper IP
 const url3 ="http://192.168.1.247.:3001/user/1";
@@ -23,7 +23,7 @@ export default class Mitrejsekort extends Component {
         this.state = { rejse: [], balance: 0 };
       }
       componentDidMount(){
-        fetch(url)
+        fetch(url2)
         .then(response => response.json())
         .then((data)=> {
           console.log(data);
@@ -83,21 +83,20 @@ export default class Mitrejsekort extends Component {
               </View>
             </ImageBackground>
         </View>
-        
-        <View style={styles.topUpview}>
 
-            <View style={styles.containerKredit}>
-            <Text>Optankning til dit Rejsekort</Text> 
-
-            <TextInput style={styles.textInputKredit} editable={true} keyboardType='numeric' onChangeText={(newbalance) => this.setState({ newbalance })} value={this.state.newbalance} />
+        <View style={styles.containerKredit}>
+          <View>
+            <TextInput style={styles.textInputKredit} editable={true} keyboardType='numeric' placeholder='100.00 DKK' onChangeText={(newbalance) => this.setState({ newbalance })} value={this.state.newbalance} />
+          </View>
+          
             <TouchableOpacity onPress={this.addbalance} style={styles.addbutton}>
               <View>
-                <Text style={styles.addcenter}>Tilføj</Text>
+                <Text style={styles. buttonTextColor}>Tank Op</Text>
               </View>
-          </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
         </View>
-      </View>
+      
+        </View>
     )
   }
 }
@@ -115,31 +114,18 @@ const styles = StyleSheet.create({
     },
     cardView: {
       flex: 1,
+      height: 218,
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
-      padding: 15
+      padding: 15,
     },
     imgBackground: {
       width: 400, 
       height: 270, 
-      marginTop: 30
     },
-    creditView: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'baseline',
-    },
-    topUpview: {
-      flex: 1,
-      flexDirection: 'column',
-      padding: 15,
-      backgroundColor: 'gray'
-    },
-
-
     containerInfo: {
-      flex: 1.7,
+      flex: 1.8,
       alignItems: 'flex-start',
       justifyContent: 'flex-end',
     },
@@ -147,36 +133,34 @@ const styles = StyleSheet.create({
       width: 100,
       height:130,
     },
+    creditView: {
+      flex: 1,
+      paddingBottom: 20
+    },
     rejseData: {
       marginTop: 30,
     },
-    heading: {
-        flexDirection: "row",
-        flex: 1,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
     containerKredit: {
-      //flex: 1,
-      alignItems: 'flex-end',
-      justifyContent: 'flex-end',
-      //marginLeft: 20,
-      //marginTop: 50,
-      width: '60%',
-      backgroundColor: 'gray'
+      flex: 0.8,
+      width: 400,
+      height: 94,
+      alignItems: 'flex-start',
+      justifyContent: 'flex-start',
+      flexDirection: 'column',
+      padding: 15,
+      marginTop: 40,
+      marginBottom: 40,
+      //backgroundColor: 'gray'
     },
-    containerImage: {
-      flex: 1,
-      alignItems: 'flex-end',
-      justifyContent: 'flex-end',
-      marginRight: 10,
-      marginTop: 80
-    },
-    view3: {
-      flex: 1,
-      backgroundColor: 'gray'
+    addbutton: {
+      height: 40,
+      width: 120,
+      marginTop: 15,
+      backgroundColor: '#057D8B',
+      borderRadius: 5,
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: 'white'
     },
     textInputKredit: {
       width: 120, 
@@ -189,16 +173,7 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontWeight: "bold"
     },
-    addbutton: {
-      height: 30,
-      width: 120,
-      backgroundColor: '#057D8B',
-      marginTop: 15,
-      borderRadius: 5,
-      paddingTop: 5,
-    },
-    addcenter: {
-      textAlign: 'center',
-      color: '#fff'
+    buttonTextColor: {
+      color: 'white'
     }
   });

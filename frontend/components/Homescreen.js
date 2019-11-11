@@ -11,9 +11,8 @@ export default class Homescreen extends Component {
       <Header/>
           <View style={styles.textBox}>
             <Text style={styles.text}>
-            Hallo dette er en infobox Hallo dette er en infobox 
-          Hallo dette er en infoboxHallo dette er en 
-          infoboxHallo dette er en infoboxHallo dette er en infobo
+            Hej og velkommen til Rejsekorts app'en, her kan du nemt og hurtigt checke ind & ud, samt tanke op og se din rejsehistorik
+            {"\n \n"}Vi håber du nyder denne app. 
             </Text>
             <ImageBackground source={require('../assets/home.png')} style={styles.imgBackground} resizeMode="cover">
           </ImageBackground>
@@ -38,10 +37,12 @@ const styles = StyleSheet.create({
     marginRight: 25,
   },
   textBox: {
-    width: 374,
-    height: 370,
-    padding: 35,
-    borderRadius: 4,
+    width: 370,
+    height: 378,
+    padding: 65,
+    borderRadius: 200,
+    borderColor: 'lightgray',
+    borderWidth: 4,
     opacity: 0.9,
     backgroundColor: '#F8F8FF',
     marginBottom: 30,
@@ -55,11 +56,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     width: 150,
     height: 80,
+    marginBottom: 10,
+   
+    
   },
   imgBackground: {
     width: 400, 
     height: 200,
-
+    opacity: 0.6
   },
   
  
