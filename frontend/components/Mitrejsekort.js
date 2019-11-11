@@ -5,7 +5,7 @@ import Header from './Header';
 
 // !! Dynamisk IP Adresse !!
 // CPH Business IP
-const url ="http://10.50.137.142:3001/user/1";
+const url ="http://10.50.137.189:3001/user/1";
 
 // CPH Business PUT 
 const urlPUT = "http://10.50.136.238:3001/update_balance"
@@ -23,7 +23,7 @@ export default class Mitrejsekort extends Component {
         this.state = { rejse: [], balance: 0 };
       }
       componentDidMount(){
-        fetch(url2)
+        fetch(url)
         .then(response => response.json())
         .then((data)=> {
           console.log(data);
@@ -68,28 +68,32 @@ export default class Mitrejsekort extends Component {
      
         <View>
             <ImageBackground source={require('../assets/rejsekort.png')} style={styles.imgBackground} resizeMode="stretch">
+              <View style={styles.cardView}>
+
                 <View style={styles.containerInfo}>
-                  {rejseData}
+                  <Image source={require('../assets/noboy.png')} style={styles.profileImg}></Image>
+                  <Text style={styles.rejseData}>{rejseData}</Text>
                 </View>
+
+                <View style={styles.creditView}>
+
+                <Text>Kredit på kontoen</Text> 
+                <TextInput style={styles.textInputKredit} value={this.state.balance.toString() + DK} editable={false} />
+                </View>
+              </View>
             </ImageBackground>
         </View>
-        <View style={styles.containerKredit}>
-          <Text>Kredit på kontoen</Text> 
-          <TextInput style={styles.textInputKredit} value={this.state.balance.toString() + DK} editable={false} />
-        </View>
-        <View>
-            <View style={styles.containerImage}>
-               <Image source={require('../assets/noboy.png')}></Image>
-            </View>
-        </View>
-        <View>
+        
+        <View style={styles.topUpview}>
+
             <View style={styles.containerKredit}>
             <Text>Optankning til dit Rejsekort</Text> 
+
             <TextInput style={styles.textInputKredit} editable={true} keyboardType='numeric' onChangeText={(newbalance) => this.setState({ newbalance })} value={this.state.newbalance} />
             <TouchableOpacity onPress={this.addbalance} style={styles.addbutton}>
-            <View>
-              <Text style={styles.addcenter}>Tilføj</Text>
-            </View>
+              <View>
+                <Text style={styles.addcenter}>Tilføj</Text>
+              </View>
           </TouchableOpacity>
             </View>
         </View>
@@ -100,7 +104,51 @@ export default class Mitrejsekort extends Component {
 
 const styles = StyleSheet.create({
     wrapper: {
-      padding: 40,
+      flex: 1,
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop: 30,
+      marginBottom: 5,
+      marginLeft: 25,
+      marginRight: 25,
+    },
+    cardView: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 15
+    },
+    imgBackground: {
+      width: 400, 
+      height: 270, 
+      marginTop: 30
+    },
+    creditView: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'baseline',
+    },
+    topUpview: {
+      flex: 1,
+      flexDirection: 'column',
+      padding: 15,
+      backgroundColor: 'gray'
+    },
+
+
+    containerInfo: {
+      flex: 1.7,
+      alignItems: 'flex-start',
+      justifyContent: 'flex-end',
+    },
+    profileImg: {
+      width: 100,
+      height:130,
+    },
+    rejseData: {
+      marginTop: 30,
     },
     heading: {
         flexDirection: "row",
@@ -110,19 +158,14 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
     },
-    containerInfo: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginLeft: 125
-    },
     containerKredit: {
-      flex: 1,
-      alignItems: 'flex-start',
-      justifyContent: 'center',
-      marginLeft: 20,
-      marginTop: 50,
-      width: '60%'
+      //flex: 1,
+      alignItems: 'flex-end',
+      justifyContent: 'flex-end',
+      //marginLeft: 20,
+      //marginTop: 50,
+      width: '60%',
+      backgroundColor: 'gray'
     },
     containerImage: {
       flex: 1,
@@ -131,17 +174,16 @@ const styles = StyleSheet.create({
       marginRight: 10,
       marginTop: 80
     },
+    view3: {
+      flex: 1,
+      backgroundColor: 'gray'
+    },
     textInputKredit: {
       width: 120, 
       height: 40, 
       borderColor: 'black', 
       borderWidth: 1, 
       paddingLeft: 5
-    },
-    imgBackground: {
-        width: 400, 
-        height: 200, 
-        marginTop: 50
     },
     minInfo: {
       fontSize: 18,

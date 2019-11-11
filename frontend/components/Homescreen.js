@@ -9,20 +9,18 @@ export default class Homescreen extends Component {
     return (
       <View style={styles.wrapper}>
       <Header/>
-        <View style={styles.outerBox}>
           <View style={styles.textBox}>
             <Text style={styles.text}>
             Hallo dette er en infobox Hallo dette er en infobox 
           Hallo dette er en infoboxHallo dette er en 
           infoboxHallo dette er en infoboxHallo dette er en infobo
             </Text>
-          </View>
-          <View>
             <ImageBackground source={require('../assets/home.png')} style={styles.imgBackground} resizeMode="cover">
           </ImageBackground>
           </View>
-          
-        </View>
+          <View style={styles.Box}>
+           
+          </View>
       </View>
     )
   }
@@ -31,6 +29,7 @@ export default class Homescreen extends Component {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 30,
@@ -38,33 +37,30 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     marginRight: 25,
   },
-  outerBox: {
-    //backgroundColor: 'dodgerblue',
-    width: '76%',
-    height: '50%',
-    padding: 15,
-    borderRadius: 6,
-    flex: 1
-  },
   textBox: {
-    //backgroundColor: '#F8F8FF',
-    width: '85%',
-    padding: 20,
+    width: 374,
+    height: 370,
+    padding: 35,
     borderRadius: 4,
     opacity: 0.9,
-    flex: 4
+    backgroundColor: '#F8F8FF',
+    marginBottom: 30,
+    justifyContent: 'flex-start'
   },
   text: {
     color: 'black',
+  },
+  Box: {
+    flex: 0.8,
+    flexDirection: 'column',
+    width: 150,
+    height: 80,
   },
   imgBackground: {
     width: 400, 
     height: 200,
 
   },
-  header: {
-    width: '60%',
-    height: 'auto'
-  }
+  
  
 });
