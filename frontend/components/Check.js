@@ -17,7 +17,9 @@ export default class Check extends Component {
 
   constructor(props){
     super(props);
-      this.state = { buttonText: 'Check Ind' };
+      this.state = { CheckedIn: false,
+                     GreetingText: 'Tryk på det blå punkt for at checke ',
+                     InOut: 'Ind' };
   }
  
                 
@@ -30,9 +32,9 @@ checkedIn = () => {
   let min = new Date().getMinutes(); 
   let sec = new Date().getSeconds(); 
 
-  if(this.state.buttonText == 'Check Ind'){
+  if(this.state.CheckedIn == false){
     console.log('Checked in');
-
+    this.setState({ GreetingText: 'Tak fordi du Checked ind med vores App.' })
     navigator.geolocation.getCurrentPosition(
       position => {
         let longtitude = position.coords.longitude;
@@ -42,15 +44,17 @@ checkedIn = () => {
           journey_latitudestart: latitude,
         })
       },
-      { enableHighAccuracy: true, timeout: 100, maximumage: 1000}
+      { enableHighAccuracy: true, timeout: 1000, maximumage: 1000}
     )
 
     this.setState({
     journey_checkin: year + '-' + month + '-' + date + ' ' + hours + ':' + min + ':' + sec + '.000000',
-    buttonText: 'Check Ud' })
+    CheckedIn: true,
+    GreetingText: 'Tryk på det blå punkt for at checke ',
+    InOut: 'Ud.'})
   }else{
     console.log('Checked Out');
-
+    this.setState({ GreetingText: 'Forsat god rejse.' })
     navigator.geolocation.getCurrentPosition(
       position => {
         let longtitude = position.coords.longitude;
@@ -63,8 +67,10 @@ checkedIn = () => {
       { enableHighAccuracy: true, timeout: 100, maximumage: 1000}
     )
     this.setState({
-      buttonText: 'Check Ind',
-      journey_checkout: year + '-' + month + '-' + date + ' ' + hours + ':' + min + ':' + sec + '.000000' })
+      CheckedIn: false,
+      journey_checkout: year + '-' + month + '-' + date + ' ' + hours + ':' + min + ':' + sec + '.000000',
+      InOut: 'Ind',
+      GreetingText: 'Tryk på det blå punkt for at checke ' })
 
 
 setTimeout( () => {
@@ -84,7 +90,7 @@ let journeydata = {
     }
 }
 console.log(this.state.journey_longtitudestart);
-fetch(url, journeydata)
+fetch(url2, journeydata)
   .then((response) => response.text())
         .then((responseJson) => {
     }).catch((error) => {
@@ -113,29 +119,17 @@ fetch(url, journeydata)
   <Header />
         <TouchableOpacity onPress={this.checkedIn}>
           <View style={styles.check}>
-            <Text style={styles.text}>{this.state.buttonText}</Text>
+            <Text style={styles.text}> { this.state.GreetingText }{ this.state.InOut } </Text>
           </View>
         </TouchableOpacity>
 
-        <View style={styles.infobox}>
-          <View style={styles.labelsbox}>
-            <Text>Journey_id: </Text>
-            <Text>Journey_checkin: </Text>
-            <Text>Journey_checkout: </Text>
-            <Text>Journey_longtitudestart: </Text>
-            <Text>Journey_latitudestart: </Text>
-            <Text>Journey_longtitudeend: </Text>
-            <Text>Journey_latitudeend: </Text>
-          </View>
-          <View>
-            <Text style={styles.databox}> { this.state.journey_id }</Text>
-            <Text style={styles.databox}> { this.state.journey_checkin } </Text>
-            <Text style={styles.databox}> { this.state.journey_checkout } </Text>
-            <Text style={styles.databox}> { this.state.journey_longtitudestart } </Text>
-            <Text style={styles.databox}> { this.state.journey_latitudestart } </Text>
-            <Text style={styles.databox}> { this.state.journey_longtitudeend } </Text>
-            <Text style={styles.databox}> { this.state.journey_latitudeend } </Text>
-          </View>       
+        <View style={this.state.CheckedIn
+                            ? styles.infoboxRed
+                            : styles.infoboxGreen}>
+            
+            <Text style={styles.status}>Check</Text>
+            <Text style={styles.status}>{ this.state.InOut }</Text>
+                  
         </View>
       </View>
     )
@@ -146,35 +140,60 @@ fetch(url, journeydata)
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 40,
+    marginTop: 30,
+    marginBottom: 5,
+    marginLeft: 25,
+    marginRight: 25,
   },
   check: {
-    width: 350,
-    height: 350,
+    width: 370,
+    height: 370,
     backgroundColor: 'dodgerblue',
     borderRadius: 200,
     borderColor: '#186fc4',
-    borderWidth: 3,
+    borderWidth: 4,
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 20
+    marginBottom: 30,
   },
   text: {
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 16,
     color: 'white'
   },
-  infobox: {
-    flex: 1,
-    flexDirection: 'row',
-    width: '100%',
-    alignItems: 'flex-start'
-  }, 
-  databox: {
-    color: 'green', 
-    fontWeight: 'bold'
+  infoboxGreen: {
+    flex: 0.8,
+    flexDirection: 'column',
+    width: 150,
+    height: 80,
+    backgroundColor: 'green',
+    borderColor: 'darkgreen',
+    borderWidth: 4,
+    marginBottom: 10,
+    borderRadius: 7,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  infoboxRed: {
+    flex: 0.8,
+    flexDirection: 'column',
+    width: 150,
+    height: 80,
+    backgroundColor: 'red',
+    borderColor: 'darkred',
+    borderWidth: 4,
+    marginBottom: 10,
+    borderRadius: 7,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  status: {
+    color: 'white', 
+    fontWeight: 'bold',
+    fontSize: 35,
   }
     
   });

@@ -23,7 +23,7 @@ export default class Mitrejsekort extends Component {
         this.state = { rejse: [], balance: 0 };
       }
       componentDidMount(){
-        fetch(url)
+        fetch(url2)
         .then(response => response.json())
         .then((data)=> {
           console.log(data);

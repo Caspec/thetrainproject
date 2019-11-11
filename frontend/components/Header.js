@@ -18,6 +18,6 @@ export default class Header extends Component {
 const styles = StyleSheet.create({
   logo: {
     width: '100%',
-    marginBottom: 40
+    marginBottom: 30,
   }
 });

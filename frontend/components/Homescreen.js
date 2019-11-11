@@ -33,7 +33,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 40,
+    marginTop: 30,
+    marginBottom: 5,
+    marginLeft: 25,
+    marginRight: 25,
   },
   outerBox: {
     //backgroundColor: 'dodgerblue',
