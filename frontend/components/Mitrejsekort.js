@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     },
     imgBackground: {
       width: 400, 
-      height: 270, 
+      height: 285, 
     },
     containerInfo: {
       flex: 1.8,

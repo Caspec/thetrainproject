@@ -25,7 +25,7 @@ router.get("/journey/:id", (req, res) => {
 // Gets all journeys
 router.get("/journeys", (req, res) => {
     console.log("log --> Get all journeys: /journeys")
-    const queryString = "SELECT * FROM journey"
+    const queryString = "SELECT * FROM journeyline INNER JOIN journey ON journeyline.fk_journey_journeyline_id = journey.journey_id WHERE fk_journey_journeyline_id = 1"
     getConnection().query(queryString, (err, rows, fields) => {
         if (err) {
             console.log("log --> Failed to query: /journeys " + err)
@@ -72,5 +72,7 @@ router.get("/journeyline", (req, res) => {
         res.json(rows)
     })
 })
+const queryStringJourneyline = "SELECT * FROM journeyline INNER JOIN journey ON journeyline.fk_journey_journeyline_id = journey.journey_id WHERE fk_journey_journeyline_id = 1"
+
 
 module.exports = router

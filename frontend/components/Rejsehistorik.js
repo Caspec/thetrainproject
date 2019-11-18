@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Header from './Header';
+import Rejse from './Rejse';
 
 // !! Dynamisk IP Adresse !!
 // CPH Business IP
@@ -21,9 +22,11 @@ export default class Rejsehistorik extends Component {
     return (
       <View style={styles.wrapper}>
         <Header />
-      <View style={styles.data}>
-        <Text>Rejsehistorik</Text>
-      </View>
+        <View style={styles.RHBox}>
+          
+          <Rejse />
+          
+        </View>
         
       </View>
     )
@@ -36,11 +39,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 30,
     marginBottom: 5,
-    marginLeft: 20,
-    marginRight: 20,
-    backgroundColor: 'gray'
+    marginLeft: 25,
+    marginRight: 25,
   },
-  data: {
-    height: 300
-  }
+  RHBox: {
+    height: 560,
+    width: '100%',
+  },
 });
