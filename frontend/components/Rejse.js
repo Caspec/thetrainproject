@@ -1,6 +1,6 @@
 // Rejse.js
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal } from 'react-native';
 
 // !! Dynamisk IP Adresse !!
 // CPH Business IP
@@ -17,8 +17,10 @@ export default class Rejse extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { rejser: [] };
+        this.state = { rejser: [],
+                       modalVisible: false};
       }
+      
       componentDidMount(){
         fetch(url2)
         .then(response => response.json())
@@ -29,27 +31,49 @@ export default class Rejse extends Component {
         .catch(error=>console.log(error)) //to catch the errors if any
         }
 
+        toggleModal(visible) {
+            this.setState({ modalVisible: visible });
+         }
+
     render() {
       return (
         <View>
             <ScrollView>
                 {
                     this.state.rejser.map((rejse, index) => (
-                    <View key = { rejse.journey_id } style = { styles.rejse }>
+                        <TouchableOpacity onPress = {() => {this.toggleModal(true)}} key = { index }>
+                            <View key = { index } style = { styles.rejse }>
 
-                        <View style={ styles.boxLabels }>
-                            <Text>Check Ind : </Text>
-                            <Text>Check Ud : </Text>
-                            <Text>Pris : </Text>
-                        </View>
+                                <View style={ styles.boxLabels }>
+                                    <Text style={ styles.labelText }>Check Ind : </Text>
+                                    <Text style={ styles.labelText }>Check Ud : </Text>
+                                    <Text style={ styles.labelText }>Pris : </Text>
+                                </View>
 
-                        <View style={ styles.boxData }>
-                            <Text>{ rejse.journey_checkin }</Text>
-                            <Text>{ rejse.journey_checkout }</Text>
-                            <Text>{ rejse.journeyline_price } Dkk</Text>
-                        </View>
+                                <View style={ styles.boxData }>
+                                    <Text>{ rejse.journey_checkin }</Text>
+                                    <Text>{ rejse.journey_checkout }</Text>
+                                    <Text>{ rejse.journeyline_price } Dkk</Text>
+                                </View>
 
-                    </View>
+                                <Modal visible = {this.state.modalVisible} >
+                                    <TouchableOpacity onPress = {() => {this.toggleModal(false)}}>
+                                        <View style={ styles.modalWrapper }>
+                                            <View style={styles.modal}>
+                                                <Text >Longtitudestart : { rejse.journey_longtitudestart }</Text>
+                                                <Text >Latitudestart : { rejse.journey_latitudestart }</Text>
+                                                <Text >Longtitudeend : { rejse.journey_longtitudeend }</Text>
+                                                <Text >Latitudeend : { rejse.journey_latitudeend }</Text>
+                                            </View>
+                                            <Text>Tab on the Map to close the modal</Text>
+                                        </View>
+                                        
+                                    </TouchableOpacity>
+                                    
+                                </Modal>
+
+                            </View>
+                        </TouchableOpacity>
                   ))
                 }
                 
@@ -62,18 +86,34 @@ export default class Rejse extends Component {
     rejse: {
         flex: 1,
         flexDirection: 'row',
+        justifyContent: 'space-between',
         width: '100%',
         backgroundColor: '#F8F8FF',
         borderRadius: 7,
         borderWidth: 2,
         borderColor: 'lightgray',
-        padding: 10,
+        paddingLeft: 25,
+        paddingRight: 25,
+        paddingVertical: 10
         
     },
-    boxLabels: {
-        width: 200
+    labelText: {
+        fontWeight: 'bold'
     },
-    boxData: {
-
+    modalWrapper: {
+        height: '90%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    modal: {
+        width: '95%',
+        height: 300,
+        backgroundColor: '#F8F8FF',
+        borderRadius: 7,
+        borderWidth: 2,
+        borderColor: 'lightgray',
+        paddingLeft: 25,
+        paddingRight: 25,
+        paddingVertical: 10
     }
   });
