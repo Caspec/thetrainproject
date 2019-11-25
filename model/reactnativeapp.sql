@@ -103,4 +103,3 @@ INSERT INTO `app`.`journeyline` (`fk_user_journeyline_id`, `fk_journey_journeyli
 
 -- Key
 INSERT INTO `app`.`key` (`key_key`) VALUES ('testkey1');
-INSERT INTO `app`.`key` (`key_key`) VALUES ('testkey2');

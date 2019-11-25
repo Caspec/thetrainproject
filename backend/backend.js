@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 
 const userRouter = require('./routes/user.js')
 const journeyRouter = require('./routes/journey.js')
+const keyRouter = require('./routes/key.js')
 
 //app.use(express.static('./public'))
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -18,7 +19,7 @@ app.use(bodyParser.json())
 
 app.use(userRouter)
 app.use(journeyRouter)
-
+app.use(keyRouter)
 
 
 // root dir
