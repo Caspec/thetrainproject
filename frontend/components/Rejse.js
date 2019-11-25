@@ -81,8 +81,8 @@ export default class Rejse extends Component {
                                                 
                                                 <Marker
                                                 coordinate= {{ latitude: this.state.rejser[index].journey_latitudestart, longitude: this.state.rejser[index].journey_longtitudestart }}
-                                                title= {"menja flise"}
-                                                description= {"Her står hun og trækker"}>
+                                                title= {"punkt 1"}
+                                                description= {"punkt 1"}>
                                                     <Image 
                                                         style={{width: 25, height: 35}}
                                                         source={require('../assets/pinStart.png')}
@@ -91,8 +91,8 @@ export default class Rejse extends Component {
 
                                                 <Marker
                                                 coordinate= {{ latitude: this.state.rejser[index].journey_latitudeend, longitude: this.state.rejser[index].journey_longtitudeend }}
-                                                title= {"menja flise"}
-                                                description= {"Her står hun og trækker"}
+                                                title= {"punkt 2"}
+                                                description= {"punkt 2"}
                                                 >
                                                     <Image 
                                                         style={{width: 25, height: 35}}
