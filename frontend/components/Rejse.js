@@ -80,7 +80,7 @@ export default class Rejse extends Component {
                                                 >
                                                 
                                                 <Marker
-                                                coordinate= {{ latitude: 55.768265, longitude: 12.504856}}
+                                                coordinate= {{ latitude: this.state.rejser[index].journey_latitudestart, longitude: this.state.rejser[index].journey_longtitudestart }}
                                                 title= {"menja flise"}
                                                 description= {"Her står hun og trækker"}>
                                                     <Image 
@@ -90,7 +90,7 @@ export default class Rejse extends Component {
                                                 </Marker>
 
                                                 <Marker
-                                                coordinate= {{ latitude: 55.773381, longitude: 12.510874}}
+                                                coordinate= {{ latitude: this.state.rejser[index].journey_latitudeend, longitude: this.state.rejser[index].journey_longtitudeend }}
                                                 title= {"menja flise"}
                                                 description= {"Her står hun og trækker"}
                                                 >
@@ -131,7 +131,8 @@ export default class Rejse extends Component {
         borderColor: 'lightgray',
         paddingLeft: 25,
         paddingRight: 25,
-        paddingVertical: 10
+        paddingVertical: 10,
+        marginBottom: 10
         
     },
     labelText: {
