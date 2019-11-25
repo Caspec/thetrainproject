@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Header from './Header';
 
 // CPH Business IP
-const url ="http://10.50.137.142:3001/create_journey";
+const url ="http://10.50.137.9310.50.137.93:3001/create_journey";
 
 // Stephan IP
 const url2 ="http://10.149.52.35:3001/create_journey";

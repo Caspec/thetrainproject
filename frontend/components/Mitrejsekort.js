@@ -5,13 +5,13 @@ import Header from './Header';
 
 // !! Dynamisk IP Adresse !!
 // CPH Business IP
-const url ="http://10.50.137.189:3001/user/1";
+const url ="http://10.50.137.93:3001/user/1";
 
 // CPH Business PUT 
-const urlPUT = "http://10.50.136.238:3001/update_balance"
+const urlPUT = "http://10.50.137.93:3001/update_balance"
 
 // Stephan IP
-const url2 ="http://10.149.52.61:3001/user/1";
+const url2 ="http://10.149.52.35:3001/user/1";
 
 // Casper IP
 const url3 ="http://192.168.1.247.:3001/user/1";

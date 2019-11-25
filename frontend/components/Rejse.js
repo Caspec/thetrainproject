@@ -1,13 +1,16 @@
 // Rejse.js
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal } from 'react-native';
-
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, Modal } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 // !! Dynamisk IP Adresse !!
 // CPH Business IP
-const url ="http://10.50.137.189:3001/journeys";
+const url ="http://10.50.137.93:3001/journeys";
+
+// Key Cph business 
+const urlKey ="http://10.50.137.93:3001/key";
 
 // Stephan IP
-const url2 ="http://10.50.137.78:3001/journeys";
+const url2 ="http://10.149.52.35:3001/journeys";
 
 // Casper IP
 const url3 ="http://192.168.1.247.:3001/journeys";
@@ -18,17 +21,27 @@ export default class Rejse extends Component {
     constructor(props) {
         super(props);
         this.state = { rejser: [],
+                       key: "",
                        modalVisible: false};
       }
       
       componentDidMount(){
-        fetch(url2)
+        fetch(url)
         .then(response => response.json())
         .then((data)=> {
           console.log(data);
           this.setState({ rejser: data})
         })
         .catch(error=>console.log(error)) //to catch the errors if any
+
+        fetch(urlKey)
+        .then(response => response.json())
+        .then((data)=> {
+          console.log(data[0].key_key);
+          this.setState({ key: data[0].key_key})
+        })
+        .catch(error=>console.log(error)) //to catch the errors if any
+
         }
 
         toggleModal(visible) {
@@ -60,10 +73,34 @@ export default class Rejse extends Component {
                                     <TouchableOpacity onPress = {() => {this.toggleModal(false)}}>
                                         <View style={ styles.modalWrapper }>
                                             <View style={styles.modal}>
-                                                <Text >Longtitudestart : { rejse.journey_longtitudestart }</Text>
-                                                <Text >Latitudestart : { rejse.journey_latitudestart }</Text>
-                                                <Text >Longtitudeend : { rejse.journey_longtitudeend }</Text>
-                                                <Text >Latitudeend : { rejse.journey_latitudeend }</Text>
+                                                <MapView 
+                                                style={ styles.map } 
+                                                initialRegion={{ latitude: 55.773381, longitude: 12.510874, latitudeDelta: 0.02, longitudeDelta: 0.02}} 
+                                                zoomEnabled= {true}
+                                                >
+                                                
+                                                <Marker
+                                                coordinate= {{ latitude: 55.768265, longitude: 12.504856}}
+                                                title= {"menja flise"}
+                                                description= {"Her står hun og trækker"}>
+                                                    <Image 
+                                                        style={{width: 25, height: 35}}
+                                                        source={require('../assets/pinStart.png')}
+                                                    />
+                                                </Marker>
+
+                                                <Marker
+                                                coordinate= {{ latitude: 55.773381, longitude: 12.510874}}
+                                                title= {"menja flise"}
+                                                description= {"Her står hun og trækker"}
+                                                >
+                                                    <Image 
+                                                        style={{width: 25, height: 35}}
+                                                        source={require('../assets/pinEnd.png')}
+                                                    />
+                                                </Marker>
+                                                 </MapView>   
+                                                
                                             </View>
                                             <Text>Tab on the Map to close the modal</Text>
                                         </View>
@@ -115,5 +152,14 @@ export default class Rejse extends Component {
         paddingLeft: 25,
         paddingRight: 25,
         paddingVertical: 10
+    },
+    map: {
+        position: "absolute",
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        justifyContent: "flex-end",
+        alignItems: "center"
     }
   });
