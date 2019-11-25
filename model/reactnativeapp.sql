@@ -93,14 +93,22 @@ INSERT INTO `app`.`user` (`user_firstname`, `user_lastname`, `user_email`, `user
 INSERT INTO `app`.`user` (`user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_balance`) VALUES ('Lars', 'Graevlingsen', 'beskidt@gmail.com', 'no.png', '50.00');
 
 -- Journey
-INSERT INTO `app`.`journey` (`journey_checkin`, `journey_checkout`, `journey_longtitudestart`, `journey_latitudestart`, `journey_longtitudeend`, `journey_latitudeend`) VALUES ('2019-07-01 00:00:10', '2019-07-01 00:30:00', '20.00', '30.00', '40.00', '60.00');
-INSERT INTO `app`.`journey` (`journey_checkin`, `journey_checkout`, `journey_longtitudestart`, `journey_latitudestart`, `journey_longtitudeend`, `journey_latitudeend`) VALUES ('2019-07-01 00:00:20', '2019-07-01 00:30:00', '20.00', '30.00', '40.00', '60.00');
-INSERT INTO `app`.`journey` (`journey_checkin`, `journey_checkout`, `journey_longtitudestart`, `journey_latitudestart`, `journey_longtitudeend`, `journey_latitudeend`) VALUES ('2019-07-01 00:00:30', '2019-07-01 00:30:00', '20.00', '30.00', '40.00', '60.00');
+INSERT INTO `app`.`journey` (`journey_checkin`, `journey_checkout`, `journey_longtitudestart`, `journey_latitudestart`, `journey_longtitudeend`, `journey_latitudeend`) VALUES ('2019-07-01 00:00:10', '2019-07-01 00:30:00', '12.504856', '55.768265', '12.510874', '55.773381');
+INSERT INTO `app`.`journey` (`journey_checkin`, `journey_checkout`, `journey_longtitudestart`, `journey_latitudestart`, `journey_longtitudeend`, `journey_latitudeend`) VALUES ('2019-07-01 00:00:10', '2019-07-01 00:30:00', '12.504856', '55.768265', '12.510874', '55.773381');
+INSERT INTO `app`.`journey` (`journey_checkin`, `journey_checkout`, `journey_longtitudestart`, `journey_latitudestart`, `journey_longtitudeend`, `journey_latitudeend`) VALUES ('2019-07-01 00:00:10', '2019-07-01 00:30:00', '12.504856', '55.768265', '12.510874', '55.773381');
+INSERT INTO `app`.`journey` (`journey_checkin`, `journey_checkout`, `journey_longtitudestart`, `journey_latitudestart`, `journey_longtitudeend`, `journey_latitudeend`) VALUES ('2019-07-01 00:00:10', '2019-07-01 00:30:00', '12.504856', '55.768265', '12.510874', '55.773381');
+INSERT INTO `app`.`journey` (`journey_checkin`, `journey_checkout`, `journey_longtitudestart`, `journey_latitudestart`, `journey_longtitudeend`, `journey_latitudeend`) VALUES ('2019-07-01 00:00:10', '2019-07-01 00:30:00', '12.504856', '55.768265', '12.510874', '55.773381');
+INSERT INTO `app`.`journey` (`journey_checkin`, `journey_checkout`, `journey_longtitudestart`, `journey_latitudestart`, `journey_longtitudeend`, `journey_latitudeend`) VALUES ('2019-07-01 00:00:10', '2019-07-01 00:30:00', '12.504856', '55.768265', '12.510874', '55.773381');
+INSERT INTO `app`.`journey` (`journey_checkin`, `journey_checkout`, `journey_longtitudestart`, `journey_latitudestart`, `journey_longtitudeend`, `journey_latitudeend`) VALUES ('2019-07-01 00:00:10', '2019-07-01 00:30:00', '12.504856', '55.768265', '12.510874', '55.773381');
 
 -- Journeyline
 INSERT INTO `app`.`journeyline` (`fk_user_journeyline_id`, `fk_journey_journeyline_id`, `journeyline_price`) VALUES ('1', '1', '20.00');
-INSERT INTO `app`.`journeyline` (`fk_user_journeyline_id`, `fk_journey_journeyline_id`, `journeyline_price`) VALUES ('2', '2', '20.00');
-INSERT INTO `app`.`journeyline` (`fk_user_journeyline_id`, `fk_journey_journeyline_id`, `journeyline_price`) VALUES ('3', '3', '20.00');
+INSERT INTO `app`.`journeyline` (`fk_user_journeyline_id`, `fk_journey_journeyline_id`, `journeyline_price`) VALUES ('1', '2', '25.00');
+INSERT INTO `app`.`journeyline` (`fk_user_journeyline_id`, `fk_journey_journeyline_id`, `journeyline_price`) VALUES ('1', '3', '20.00');
+INSERT INTO `app`.`journeyline` (`fk_user_journeyline_id`, `fk_journey_journeyline_id`, `journeyline_price`) VALUES ('1', '4', '25.00');
+INSERT INTO `app`.`journeyline` (`fk_user_journeyline_id`, `fk_journey_journeyline_id`, `journeyline_price`) VALUES ('1', '5', '20.00');
+INSERT INTO `app`.`journeyline` (`fk_user_journeyline_id`, `fk_journey_journeyline_id`, `journeyline_price`) VALUES ('1', '6', '25.00');
+INSERT INTO `app`.`journeyline` (`fk_user_journeyline_id`, `fk_journey_journeyline_id`, `journeyline_price`) VALUES ('1', '7', '20.00');
 
 -- Key
 INSERT INTO `app`.`key` (`key_key`) VALUES ('testkey1');
