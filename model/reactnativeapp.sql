@@ -72,6 +72,15 @@ CREATE TABLE IF NOT EXISTS `app`.`journeyline` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
+-- -----------------------------------------------------
+-- Table `app`.`key`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `app`.`key` (
+  `key_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `key_key` VARCHAR(100) CHARACTER SET 'utf8' NOT NULL,
+  PRIMARY KEY (`key_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -91,3 +100,7 @@ INSERT INTO `app`.`journey` (`journey_checkin`, `journey_checkout`, `journey_lon
 INSERT INTO `app`.`journeyline` (`fk_user_journeyline_id`, `fk_journey_journeyline_id`, `journeyline_price`) VALUES ('1', '1', '20.00');
 INSERT INTO `app`.`journeyline` (`fk_user_journeyline_id`, `fk_journey_journeyline_id`, `journeyline_price`) VALUES ('2', '2', '20.00');
 INSERT INTO `app`.`journeyline` (`fk_user_journeyline_id`, `fk_journey_journeyline_id`, `journeyline_price`) VALUES ('3', '3', '20.00');
+
+-- Key
+INSERT INTO `app`.`key` (`key_key`) VALUES ('testkey1');
+INSERT INTO `app`.`key` (`key_key`) VALUES ('testkey2');
