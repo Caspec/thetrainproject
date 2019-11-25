@@ -18,6 +18,7 @@ USE `app` ;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS journey;
 DROP TABLE IF EXISTS journeyline;
+DROP TABLE IF EXISTS `key`;
 
 -- -----------------------------------------------------
 -- Table `app`.`journey`
